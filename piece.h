@@ -3,7 +3,7 @@
 #include "square.h"
 
 #define MAX_SQUARES 4
-#define DFLT_PIECES_N 5
+#define DFLT_PIECES_N 7
 //dflt_pieces pieces, made each of max_squares squares, made of x,y
 const int dflt_pieces[DFLT_PIECES_N][MAX_SQUARES][2] = {
 	{{0,0}, {0,1}, {1,0}, {1,1}},	//square
@@ -11,6 +11,8 @@ const int dflt_pieces[DFLT_PIECES_N][MAX_SQUARES][2] = {
 	{{0,0}, {0,1}, {0,2}, {1,2}},	//right L
 	{{0,0}, {1,0}, {2,0}, {1,1}},	//T
 	{{0,0}, {0,1}, {0,2}, {0,3}},	//I
+	{{1,0}, {0,1}, {1,1}, {0,2}},	//left S
+	{{0,0}, {0,1}, {1,1}, {1,2}},	//right S
 };
 
 
