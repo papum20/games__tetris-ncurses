@@ -18,7 +18,7 @@ void Game::createWindow() {
 	wrefresh(gameWin);
 }
 
-WINDOW* getWindow() {
+WINDOW *Game::getWindow() {
 	return gameWin;
 }
 
@@ -57,6 +57,6 @@ void Game::drawPiece(Piece piece, bool drawing) {
 		mvwaddch(gameWin, pieceY[i], pieceX[i], ' ');
 	}
 	
-	if(drawing) attroff(COLOR_PAIR(color));
+	if(drawing) attroff(piece.getColor());
 	else attroff(COLOR_PAIR(bg_color));
 }
