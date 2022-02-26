@@ -13,7 +13,7 @@ class Piece {
 		Square squares[MAX_SQUARES];
 		int color;
 	public:
-		Piece(int x, int y, int n, Square sq[], int c, int bgc);
+		Piece(int x, int y, int n, Square sq[], int c);
 		Piece();
 		void move(int x_move, int y_move);
 		//changes x and y according to input

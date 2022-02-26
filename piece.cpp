@@ -14,7 +14,6 @@ Piece::Piece() {
 	y = 0;
 	n_squares = 0;
 	color = 0;
-	bg_color = 0;
 }
 
 
