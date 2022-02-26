@@ -1,4 +1,4 @@
-#include <curses.h>
+#include <ncurses/curses.h>
 #include <stdlib.h>
 #include "square.h"
 
@@ -24,11 +24,12 @@ class Piece {
 		int n_squares;
 		Square squares[MAX_SQUARES];
 		int color;
+		
+		void defineColors();
+		//initializes colors for pieces
 	public:
 		Piece(int x, int y);
 		Piece();
-		void defineColors();
-		//initializes colors for pieces
 		int getSquares(int ret_x[], int ret_y[]);
 		//modifies ret_x and ret_y with squares's x and y, returns n_sqares
 		int getColor();

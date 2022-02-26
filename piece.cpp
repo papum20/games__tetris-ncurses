@@ -18,7 +18,13 @@ Piece::Piece() {
 
 
 Piece::defineColors() {
-
+	init_pair(0, COLOR_WHITE, COLOR_BLACK);	//square
+	init_pair(1, COLOR_YELLOW, COLOR_BLACK);	//left L
+	init_pair(2, COLOR_MAGENTA, COLOR_BLACK);	//right L
+	init_pair(3, COLOR_CYAN, COLOR_BLACK);	//T
+	init_pair(4, COLOR_BLUE, COLOR_BLACK);	//I
+	init_pair(5, COLOR_GREEN, COLOR_BLACK);	//left S
+	init_pair(6, COLOR_RED, COLOR_BLACK);	//right S
 }
 
 

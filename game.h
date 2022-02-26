@@ -1,4 +1,4 @@
-#include <curses.h>
+#include <ncurses/curses.h>
 #include "piece.h"
 
 #define MAX_ARRAY 200

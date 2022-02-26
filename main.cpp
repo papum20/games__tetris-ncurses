@@ -1,4 +1,3 @@
-#include <curses.h>
 #include <ctime>
 #include "game.h"
 using namespace std;
