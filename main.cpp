@@ -1,4 +1,5 @@
 #include <curses.h>
+#include <ctime>
 #include "game.h"
 using namespace std;
 
@@ -12,6 +13,7 @@ using namespace std;
 
 int main()
 {
+	srand(time(NULL));
 
 	// CHECK IF FITS IN TERMINAL, COLORS...
 
@@ -20,8 +22,8 @@ int main()
 	initscr();
 
 	// INIT GAME SCREEN
-	Game gameWindow = Game(GAME_WIDTH, GAME_HEIGHT);
-	gameWindow.createWindow();
+	Game gameScreen = Game(GAME_WIDTH, GAME_HEIGHT, 0);
+
 
 	// INIT HUD
 
