@@ -1,12 +1,11 @@
 #include "inputManager.h"
 
 
-InputManager::InputManager(int t) {
+InputManager::InputManager(int t = DFLT_TIME) {
 	x = 0;
 	y = 0;
 	time = t;
 }
-
 
 void InputManager::init(WINDOW *win) {
 	noecho();			//doesn't print input
@@ -14,6 +13,17 @@ void InputManager::init(WINDOW *win) {
 	cbreak();			//can use ctrl+X
 	timeout(time);		//waits milliseconds for input
 }
+
+//// GET
+int InputManager::getX() {
+	return x;
+}
+int InputManager::getY() {
+	return y;
+}
+
+//// FUNCTIONS
+
 
 
 void InputManager::getInput(WINDOW *win) {

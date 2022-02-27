@@ -1,5 +1,6 @@
 #include <ctime>
 #include "game.h"
+#include "inputManager.h"
 using namespace std;
 
 
@@ -20,9 +21,12 @@ int main()
 
 	initscr();
 
-	// INIT GAME SCREEN
+	// INIT GAME
 	Game gameScreen = Game(GAME_WIDTH, GAME_HEIGHT, 0);
-
+	Piece pieceController = Piece(GAME_WIDTH / 2, GAME_HEIGHT + 5);
+	pieceController.newPiece();
+	InputManager inputManager = InputManager();
+	inputManager.init(gameScreen.getWindow());
 
 	// INIT HUD
 
