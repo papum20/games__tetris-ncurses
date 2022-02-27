@@ -1,5 +1,4 @@
 y speed
 gameover
 hud (score..)
-add to grid, new piece
 score

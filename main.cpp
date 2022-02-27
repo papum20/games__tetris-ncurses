@@ -4,9 +4,6 @@
 using namespace std;
 
 
-
-
-#define GAME_WIDTH 20
 #define GAME_HEIGHT 20
 
 
@@ -22,19 +19,37 @@ int main()
 	initscr();
 
 	// INIT GAME
-	Game gameScreen = Game(GAME_WIDTH, GAME_HEIGHT, 0);
-	Piece pieceController = Piece(GAME_WIDTH / 2, GAME_HEIGHT + 5);
-	pieceController.newPiece();
-	InputManager inputManager = InputManager();
-	inputManager.init(gameScreen.getWindow());
+	//Game gameScreen = Game(GAME_WIDTH, GAME_HEIGHT, 0);
+	//Piece pieceController = Piece(GAME_WIDTH / 2, 6);
+	//pieceController.newPiece();
+	//InputManager inputManager = InputManager(1000);
+	//inputManager.init(gameScreen.getWindow());
 
 	// INIT HUD
+init_pair(10, COLOR_BLUE, COLOR_WHITE);
+attron(COLOR_PAIR(10));
+mvprintw(0, 0, "%d", 3);
+attroff(COLOR_PAIR(10));
+refresh();
+
 
 	// UPDATE
 	while(gameIsOn)
 	{
+	/*
 		//CHECK INPUT
 		inputManager.getInput(gameScreen.getWindow());
+	init_pair(10, COLOR_BLUE, COLOR_WHITE);
+	attron(COLOR_PAIR(10));
+	mvprintw(0, 0, "%d", inputManager.getX());
+	printw(" %d", inputManager.getY());
+	move(1, 0);
+	int sqx[MAX_SQUARES], sqy[MAX_SQUARES], n_sq;
+	n_sq = pieceController.getSquares(sqx, sqy);
+	for(int i = 0; i < n_sq; i++) {
+		printw("%d %d-", sqx[i], sqy[i]);
+	}
+		refresh();/*
 		int new_coord[2];
 		gameScreen.checkCollision(pieceController, new_coord, inputManager.getX(), 1 + inputManager.getY());
 		//MOVE
@@ -46,7 +61,9 @@ int main()
 			gameScreen.addToGrid(pieceController);
 			pieceController.newPiece();
 		}
+*/
 	}
+
 
 	endwin();
 }

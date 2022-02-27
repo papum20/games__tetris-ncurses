@@ -1,7 +1,7 @@
 #include "inputManager.h"
 
 
-InputManager::InputManager(int t = DFLT_TIME) {
+InputManager::InputManager(int t) {
 	x = 0;
 	y = 0;
 	time = t;

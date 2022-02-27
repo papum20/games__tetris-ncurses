@@ -9,13 +9,9 @@ Piece::Piece(int x, int y) {
 	defineColors();
 }
 Piece::Piece() {
-	x = 0;
-	y = 0;
-	n_squares = 0;
-	color = 0;
-	defineColors();
+	x = GAME_WIDTH / 2;
+	y = -5;
 }
-
 
 void Piece::defineColors() {
 	init_pair(0, COLOR_WHITE, COLOR_BLACK);	//square
@@ -56,4 +52,6 @@ void Piece::newPiece() {
 	for(int i = 0; i < n_squares; i++)
 		squares[i] = Square(dflt_pieces[new_piece][i][0], dflt_pieces[new_piece][i][1]);
 	color = new_piece;
+	x = GAME_WIDTH / 2;
+	y = -5;
 }

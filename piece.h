@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "square.h"
 
+
+#define GAME_WIDTH 20
+
 #define MAX_SQUARES 4
 #define DFLT_PIECES_N 7
 //dflt_pieces pieces, made each of max_squares squares, made of x,y
