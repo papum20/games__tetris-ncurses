@@ -17,7 +17,7 @@ Piece::Piece() {
 }
 
 
-Piece::defineColors() {
+void Piece::defineColors() {
 	init_pair(0, COLOR_WHITE, COLOR_BLACK);	//square
 	init_pair(1, COLOR_YELLOW, COLOR_BLACK);	//left L
 	init_pair(2, COLOR_MAGENTA, COLOR_BLACK);	//right L
@@ -53,9 +53,7 @@ void Piece::move(int x_move, int y_move) {
 void Piece::newPiece() {
 	int new_piece = rand()%DFLT_PIECES_N;
 	int n_squares = MAX_SQUARES;
-	for(int i = 0; i < n_squares; i++) {
-		tmp_piece = dflt_pieces[new_piece][i];
-		squares[i] = Square(tmp_piece[0], tmp_piece[1]);
-	}
+	for(int i = 0; i < n_squares; i++)
+		squares[i] = Square(dflt_pieces[new_piece][i][0], dflt_pieces[new_piece][i][1]);
 	color = new_piece;
 }
