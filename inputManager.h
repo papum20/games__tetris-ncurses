@@ -1,4 +1,4 @@
-#include <curses.h>
+#include <ncurses/curses.h>
 
 #define DFLT_TIME (float)1 / 60
 

@@ -17,6 +17,7 @@ int main()
 	bool gameIsOn = true;
 
 	initscr();
+	start_color();
 
 	// INIT GAME
 	//Game gameScreen = Game(GAME_WIDTH, GAME_HEIGHT, 0);
@@ -29,7 +30,7 @@ int main()
 init_pair(10, COLOR_BLUE, COLOR_WHITE);
 attron(COLOR_PAIR(10));
 mvprintw(0, 0, "%d", 3);
-attroff(COLOR_PAIR(10));
+//attroff(COLOR_PAIR(10));
 refresh();
 
 
