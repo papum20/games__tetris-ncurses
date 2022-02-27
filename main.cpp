@@ -33,7 +33,19 @@ int main()
 	// UPDATE
 	while(gameIsOn)
 	{
-
+		//CHECK INPUT
+		inputManager.getInput(gameScreen.getWindow());
+		int new_coord[2];
+		gameScreen.checkCollision(pieceController, new_coord, inputManager.getX(), 1 + inputManager.getY());
+		//MOVE
+		gameScreen.drawPiece(pieceController, false);
+		pieceController.move(new_coord[0], new_coord[1]);
+		gameScreen.drawPiece(pieceController, true);
+		//CHECK IF GOT TO END
+		if(new_coord[1] == 0) {
+			gameScreen.addToGrid(pieceController);
+			pieceController.newPiece();
+		}
 	}
 
 	endwin();

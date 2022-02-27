@@ -24,25 +24,17 @@ WINDOW *Game::getWindow() {
 
 
 
-char Game::checkCollision(Piece piece, int x_input, int y_input) {
+void Game::checkCollision(Piece piece, int out[], int x_input, int y_input) {
 	int pieceX[MAX_SQUARES], pieceY[MAX_SQUARES], n_sq;
 	n_sq = piece.getSquares(pieceX, pieceY);
 
-	bool x_collide = false, y_collide = false;
 	int i = 0;
 	while(i < n_sq) {
-		int new_x = pieceX[i] + x_input, new_y = pieceY[i] + y_input;
-		if(new_x < 0 || new_x >= width) {
-			x_collide = true;
-			if(full_squares[new_y]) y_collide = true;
-		}
-		else if(full_squares[new_y]) y_collide = true;
+		int new_x = pieceX[i] + x_input, new_y = pieceY[i] + y_input, fast_y = pieceY[i] + 1;
+		if(new_x < 0 || new_x >= width) out[0] = 0;
+		if(full_squares[new_y]) out[1] = 0;
+		else if(full_squares[fast_y]) out[1] = 1;
 	}
-
-	if(x_collide && y_collide) return 'b';
-	else if(x_collide) return 'x';
-	else if(y_collide) return 'y';
-	else return 'n';
 }
 
 
@@ -59,4 +51,13 @@ void Game::drawPiece(Piece piece, bool drawing) {
 	
 	if(drawing) attroff(piece.getColor());
 	else attroff(COLOR_PAIR(bg_color));
+}
+
+
+void Game::addToGrid(Piece piece) {
+	int piece_x[MAX_SQUARES], piece_y[MAX_SQUARES], n_squares;
+	n_squares = piece.getSquares(piece_x, piece_y);
+
+	for(int i = 0; i < n_squares; i++)
+		full_squares[piece_y[i]][piece_x[i]] = true;
 }
