@@ -1,4 +1,4 @@
-#include <ncurses/curses.h>
+#include <curses.h>
 #include "piece.h"
 
 #define MAX_ARRAY 200
@@ -12,14 +12,16 @@ class Game {
 		bool full_squares[MAX_ARRAY][MAX_ARRAY];	//y, x
 		int bg_color;	//background_color
 		
-		void createWindow();
+		void createWindow(int start_x, int start_y);
 	public:
-		Game(int w, int h, int bgc);
+		Game(int start_x, int start_y, int w, int h, int bgc);
 		WINDOW* getWindow();
-		void checkCollision(Piece piece, int out[], int x_input, int y_input);
-		//modifies out with x,y so it doesn't collide
+		void checkCollision(Piece piece, int move[], int x_input, int y_input);
+		//modifies move with x,y so it doesn't collide (only one between x,y has value != 0)
 		void drawPiece(Piece piece, bool drawing);
 		//if(drawing) draws piece, else erases it
+		bool pieceToEnd(Piece piece);
+		//if piece at last line
 		void addToGrid(Piece piece);
 		//adds piece to full_squares
 };

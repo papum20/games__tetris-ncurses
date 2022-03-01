@@ -1,4 +1,4 @@
-#include <ncurses/curses.h>
+#include <curses.h>
 #include <stdlib.h>
 #include "square.h"
 
@@ -35,7 +35,7 @@ class Piece {
 		Piece();
 		int getSquares(int ret_x[], int ret_y[]);
 		//modifies ret_x and ret_y with squares's x and y, returns n_sqares
-		int getColor();
+		chtype getColor();
 		//returns color as attribute
 		void move(int x_move, int y_move);
 		//changes x and y according to input
