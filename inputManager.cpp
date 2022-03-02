@@ -55,5 +55,6 @@ void InputManager::timerInit(int id, float duration) {
 
 bool InputManager::timerCount(int id) {
 	currentTime[id] = clock() / CLOCKS_PER_SEC;
+mvwprintw(inputWin, 1,0, "%d\t%d", currentTime[id] - startTime[id], clockDuration[id]);
 	return (currentTime[id] - startTime[id] >= clockDuration[id]);
 }
