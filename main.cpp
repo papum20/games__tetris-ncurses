@@ -43,19 +43,22 @@ int main()
 
 
 int turn = 0;
+int refresh = 0;
 	// UPDATE
 	inputManager.timerInit(0, FALL_RATE);				// TIMER 0 = FALL TIME
 	while(gameIsOn)
 	{
 		if(!inputManager.timerCount(0)) {		// IF: INPUT MOVEMENT
 			inputManager.timerInit(1, REFRESH_RATE);	// TIMER 1 = INPUT TIME
-			//while(!inputManager.timerCount(1));
+			while(!inputManager.timerCount(1));
 			inputManager.getInput();
+refresh++;
 		}
 		else {											// ELSE: FALL MOVEMENT
 			inputManager.setY(1);
 			inputManager.timerInit(0, FALL_RATE);
-			turn = 0;
+//			turn = 0;
+refresh = 0;
 		}
 
 		//MOVE
@@ -71,7 +74,9 @@ int turn = 0;
 			gameScreen.addToGrid(pieceController);
 			pieceController.newPiece();
 		}
-mvwprintw(debugWin, 1,1, "%d    ", turn++);
+
+mvwprintw(debugWin, 1,1, "%d,\t%d   ", turn++, refresh);
+mvwprintw(debugWin, 2,1, "%d,%d, %d,%d", inputManager.getX(), inputManager.getY(), new_coord[0], new_coord[1]);
 wrefresh(debugWin);
 	}
 	
