@@ -5,7 +5,7 @@ InputManager::InputManager(int winX, int winY, int t) {
 	x = 0;
 	y = 0;
 	time = t;
-	inputWin = newwin(1, 20, winY, winX);
+	inputWin = newwin(3, 20, winY-2, winX);
 	init();
 }
 
@@ -48,13 +48,14 @@ void InputManager::getInput() {
 //// TIMER
 
 void InputManager::timerInit(int id, float duration) {
-	startTime[id] = clock() / CLOCKS_PER_SEC;
+	startTime[id] = (double)clock() / CLOCKS_PER_SEC;
 	currentTime[id] = startTime[id];
 	clockDuration[id] = duration;
 }
 
 bool InputManager::timerCount(int id) {
-	currentTime[id] = clock() / CLOCKS_PER_SEC;
-mvwprintw(inputWin, 1,0, "%d\t%d", currentTime[id] - startTime[id], clockDuration[id]);
+	currentTime[id] = (double)clock() / CLOCKS_PER_SEC;
+if(id==0) mvwprintw(inputWin, 1,0, "%f %f", currentTime[id] - startTime[id], clockDuration[id]);
+else if(id==1) mvwprintw(inputWin, 2,0, "%f %f", currentTime[id] - startTime[id], clockDuration[id]);
 	return (currentTime[id] - startTime[id] >= clockDuration[id]);
 }

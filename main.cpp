@@ -4,7 +4,7 @@ using namespace std;
 
 
 #define GAME_HEIGHT 20
-#define FALL_RATE (float)1
+#define FALL_RATE 1.
 #define REFRESH_RATE 1. / 30
 
 
