@@ -1,4 +1,3 @@
-y speed
 gameover
 hud (score..)
 score

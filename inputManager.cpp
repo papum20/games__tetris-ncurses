@@ -5,7 +5,7 @@ InputManager::InputManager(int winX, int winY, int t) {
 	x = 0;
 	y = 0;
 	time = t;
-	inputWin = newwin(3, 20, winY-2, winX);
+	inputWin = newwin(1, 20, winY, winX);
 	init();
 }
 
@@ -14,7 +14,7 @@ void InputManager::init() {
 	keypad(inputWin, true);		//can use special keys
 	cbreak();					//can use ctrl+X
 	wtimeout(inputWin, time);	//waits milliseconds for input
-	curs_set(1);				//no cursor
+	curs_set(0);				//no cursor
 }
 
 //// GET
@@ -55,7 +55,5 @@ void InputManager::timerInit(int id, float duration) {
 
 bool InputManager::timerCount(int id) {
 	currentTime[id] = (double)clock() / CLOCKS_PER_SEC;
-if(id==0) mvwprintw(inputWin, 1,0, "%f %f", currentTime[id] - startTime[id], clockDuration[id]);
-else if(id==1) mvwprintw(inputWin, 2,0, "%f %f", currentTime[id] - startTime[id], clockDuration[id]);
 	return (currentTime[id] - startTime[id] >= clockDuration[id]);
 }
