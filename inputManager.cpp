@@ -10,7 +10,7 @@ InputManager::InputManager(int winX, int winY, int t) {
 }
 
 void InputManager::init() {
-	//noecho();					//doesn't print input
+	noecho();					//doesn't print input
 	keypad(inputWin, true);		//can use special keys
 	cbreak();					//can use ctrl+X
 	wtimeout(inputWin, time);	//waits milliseconds for input
@@ -23,6 +23,10 @@ int InputManager::getX() {
 }
 int InputManager::getY() {
 	return y;
+}
+void InputManager::setY(int y) {
+	x = 0;
+	this->y = y;
 }
 
 //// FUNCTIONS
@@ -43,13 +47,13 @@ void InputManager::getInput() {
 
 //// TIMER
 
-void InputManager::timerInit(int id, int duration) {
-	currentTime[id] = 0;
+void InputManager::timerInit(int id, float duration) {
 	startTime[id] = clock() / CLOCKS_PER_SEC;
+	currentTime[id] = startTime[id];
 	clockDuration[id] = duration;
 }
 
 bool InputManager::timerCount(int id) {
-	currentTime[id] += clock() / CLOCKS_PER_SEC;
+	currentTime[id] = clock() / CLOCKS_PER_SEC;
 	return (currentTime[id] - startTime[id] >= clockDuration[id]);
 }

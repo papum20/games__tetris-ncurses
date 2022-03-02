@@ -1,9 +1,12 @@
 #include <curses.h>
 #include <ctime>
 
-#define DFLT_TIME 1000
+#define DFLT_TIME 0
 #define MAX_TIMERS 20
 
+
+
+// ALWAYS 1 INPUT AT A TIME
 
 class InputManager {
 	protected:
@@ -11,7 +14,7 @@ class InputManager {
 		int time;	//milliseconds
 		WINDOW *inputWin;
 		//TIMER
-		double startTime[MAX_TIMERS];
+		float startTime[MAX_TIMERS];
 		float currentTime[MAX_TIMERS];
 		float clockDuration[MAX_TIMERS];
 
@@ -22,9 +25,10 @@ class InputManager {
 		//gets input and sets input variables
 		int getX();
 		int getY();
+		void setY(int y);
 		//TIMER
 		//id < MAX_TIMERS
-		void timerInit(int id, int duration = 0);
+		void timerInit(int id, float duration = 0);
 		//initializes timer variables for timer identified by id
 		bool timerCount(int id);
 		//increments timer and returns if timer ended (requires timerInit first) for id

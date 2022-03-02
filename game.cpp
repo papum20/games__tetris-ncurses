@@ -54,18 +54,18 @@ void Game::drawPiece(Piece piece, bool drawing) {
 }
 
 
-bool Game::pieceToEnd(Piece piece) {
-	int xPiece[MAX_SQUARES], yPiece[MAX_SQUARES], nSquares;
-	nSquares = piece.getSquares(xPiece, yPiece);
-
-	bool isToEnd = false;
-	int i = 0;
-	while(i < MAX_SQUARES) {
-		if(yPiece[i] == height - 2) isToEnd = true;
-		i++;
-	}
-	return isToEnd;
-}
+//bool Game::pieceToEnd(Piece piece) {
+//	int xPiece[MAX_SQUARES], yPiece[MAX_SQUARES], nSquares;
+//	nSquares = piece.getSquares(xPiece, yPiece);
+//
+//	bool isToEnd = false;
+//	int i = 0;
+//	while(i < MAX_SQUARES) {
+//		if(yPiece[i] == height - 2) isToEnd = true;
+//		i++;
+//	}
+//	return isToEnd;
+//}
 
 
 void Game::addToGrid(Piece piece) {

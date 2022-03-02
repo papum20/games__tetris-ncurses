@@ -20,8 +20,8 @@ class Game {
 		//modifies move with x,y so it doesn't collide (only one between x,y has value != 0)
 		void drawPiece(Piece piece, bool drawing);
 		//if(drawing) draws piece, else erases it
-		bool pieceToEnd(Piece piece);
-		//if piece at last line
+		//bool pieceToEnd(Piece piece);
+		////if piece at last line
 		void addToGrid(Piece piece);
 		//adds piece to full_squares
 };

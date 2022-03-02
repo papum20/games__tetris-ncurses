@@ -4,8 +4,8 @@ using namespace std;
 
 
 #define GAME_HEIGHT 20
-#define FALL_RATE 0.8
-//#define REFRESH_RATE (float)1 / 30
+#define FALL_RATE (float)1
+#define REFRESH_RATE 1. / 30
 
 
 int main()
@@ -43,42 +43,38 @@ int main()
 
 
 int turn = 0;
-bool last_line = false;
 	// UPDATE
+	inputManager.timerInit(0, FALL_RATE);				// TIMER 0 = FALL TIME
 	while(gameIsOn)
 	{
-
-		// INPUT MOVEMENT
-		inputManager.timerInit(0, FALL_RATE);
-		do {
-			//CHECK INPUT
+		if(!inputManager.timerCount(0)) {		// IF: INPUT MOVEMENT
+			inputManager.timerInit(1, REFRESH_RATE);	// TIMER 1 = INPUT TIME
+			//while(!inputManager.timerCount(1));
 			inputManager.getInput();
-			//MOVE
-			int new_coord[2];
-			gameScreen.checkCollision(pieceController, new_coord, inputManager.getX(), inputManager.getY());
-	//DEBUG
-	mvwprintw(debugWin, 4, 1, "%d,%d", new_coord[0], new_coord[1]);
-	wprintw(debugWin, "-%d", pieceController.getColor());
-	wrefresh(debugWin);
-			gameScreen.drawPiece(pieceController, false);
-			pieceController.move(new_coord[0], new_coord[1]);
-			gameScreen.drawPiece(pieceController, true);
-			
-			//CHECK IF GOT TO END
-			if(gameScreen.pieceToEnd(pieceController)) {
-				if(!last_line) last_line = true;
-				else {
-					gameScreen.addToGrid(pieceController);
-					pieceController.newPiece();
-					last_line = false;
-				}
-			}
-			else last_line = false;
+		}
+		else {											// ELSE: FALL MOVEMENT
+			inputManager.setY(1);
+			inputManager.timerInit(0, FALL_RATE);
+			turn = 0;
+		}
 
-		} while(!inputManager.timerCount(0));
+		//MOVE
+		int new_coord[2];
+		gameScreen.checkCollision(pieceController, new_coord, inputManager.getX(), inputManager.getY());
 
+		gameScreen.drawPiece(pieceController, false);
+		pieceController.move(new_coord[0], new_coord[1]);
+		gameScreen.drawPiece(pieceController, true);
+		
+		//CHECK IF GOT TO END
+		if(inputManager.getY() != new_coord[1]) {		//if blocked on y
+			gameScreen.addToGrid(pieceController);
+			pieceController.newPiece();
+		}
+mvwprintw(debugWin, 1,1, "%d    ", turn++);
+wrefresh(debugWin);
+	}
 	
-		//FALL
 
 	
 ////DEBUG
@@ -96,7 +92,6 @@ bool last_line = false;
 //wrefresh(debugWin);
 
 
-	}
 
 
 	endwin();
