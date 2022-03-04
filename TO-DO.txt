@@ -1,4 +1,3 @@
 gameover
 hud (score..)
 score
-dont make erase borders

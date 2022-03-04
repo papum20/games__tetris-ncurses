@@ -62,8 +62,9 @@ void Piece::newPiece() {
 void Piece::rotate(Game grid) {
 	for(int i = 0; i < n_squares; i++) squares[i].rotateAroundOrigin();
 	if(grid.checkCollision(getSquares()) ) {
-		if(!grid.checkCollision(getSquares(1, 0)) ) move(1, 0);
-		else if(!grid.checkCollision(getSquares(-1, 0)) ) move(-1, 0);
+		if(!grid.checkCollision(getSquares(1, 0)) )			 move(1, 0);
+		else if(!grid.checkCollision(getSquares(-1, 0)) )	move(-1, 0);
+		else if(!grid.checkCollision(getSquares(0, -1)) )	move(0, -1);
 		else
 			for(int i = 0; i < n_squares; i++) squares[i].unRotateAroundOrigin();
 	}

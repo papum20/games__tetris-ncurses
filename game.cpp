@@ -43,7 +43,7 @@ void Game::drawPiece(piecePos piece, chtype color, bool drawing) {
 	if(drawing) wattron(gameWin, color);
 
 	for(int i = 0; i < piece.n_squares; i++) {
-		mvwaddch(gameWin, piece.yPiece[i], piece.xPiece[i], ' ');
+		if(piece.yPiece[i] > 0) mvwaddch(gameWin, piece.yPiece[i], piece.xPiece[i], ' ');
 	}
 	
 	wattroff(gameWin, color);
