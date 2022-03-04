@@ -23,15 +23,15 @@ int main()
 	int start_y = GAME_WIDTH / 4;
 
 	Game gameScreen = Game(start_x, start_y, GAME_WIDTH, GAME_HEIGHT, 0);
-	Piece pieceController = Piece(GAME_WIDTH / 2, -1.5);
+	Piece pieceController = Piece();
 	pieceController.newPiece();
 	InputManager inputManager = InputManager(start_x, start_y - 1);
 
 //DEBUG WINDOW
-WINDOW *debugWin = newwin(6, GAME_WIDTH, start_y + GAME_HEIGHT, start_x);
-keypad(debugWin, true);
-box(debugWin, 0, 0);
-wrefresh(debugWin);
+//WINDOW *debugWin = newwin(6, GAME_WIDTH, start_y + GAME_HEIGHT, start_x);
+//keypad(debugWin, true);
+//box(debugWin, 0, 0);
+//wrefresh(debugWin);
 
 	// INIT HUD
 

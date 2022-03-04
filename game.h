@@ -20,8 +20,6 @@ class Game {
 		//
 		void drawPiece(piecePos piece, chtype color, bool drawing);
 		//if(drawing) draws piece, else erases it
-		//bool pieceToEnd(Piece piece);
-		////if piece at last line
 		void addToGrid(piecePos piece);
 		//adds piece to full_squares
 };
