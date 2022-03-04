@@ -1,3 +1,6 @@
+#ifndef SQUARE_H
+#define SQUARE_H
+
 
 //x AND y RELATIVE TO PARENT
 
@@ -14,3 +17,6 @@ class Square {
 		void unRotateAroundOrigin();
 		//-90 degrees rotation
 };
+
+
+#endif

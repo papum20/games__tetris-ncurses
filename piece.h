@@ -1,3 +1,8 @@
+#ifndef PIECE_H
+#define PIECE_H
+
+
+
 #include <curses.h>
 #include "square.h"
 #include "game.h"
@@ -44,3 +49,7 @@ class Piece {
 		void rotate(Game grid);
 		//rotates by 90 degrees clockwise
 };
+
+
+
+#endif

@@ -1,3 +1,7 @@
+#ifndef GAME_H
+#define GAME_H
+
+
 #include <curses.h>
 #include "common.h"
 
@@ -23,3 +27,6 @@ class Game {
 		void addToGrid(piecePos piece);
 		//adds piece to full_squares
 };
+
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef HUD_H
+#define HUD_H
+
 #include <curses.h>
 #include "common.h"
 
@@ -8,7 +11,11 @@ class Hud {
 		WINDOW *scoreWin;
 	public:
 		Hud(int xNextP, int yNextP, int xScore, int yScore);
-		Hud(int xNextP, int yNextP);
+		Hud();
+		//Hud(int xNextP, int yNextP);
 		void drawPiece(piecePos piece, chtype color, bool drawing);
 		//if(drawing) draws piece, else erases it
 };
+
+
+#endif

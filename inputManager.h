@@ -1,3 +1,7 @@
+#ifndef INPUTMANAGER_H
+#define INPUTMANAGER_H
+
+
 #include <curses.h>
 #include <ctime>
 
@@ -35,3 +39,6 @@ class InputManager {
 		bool timerCount(int id);
 		//increments timer and returns if timer ended (requires timerInit first) for id
 };
+
+
+#endif

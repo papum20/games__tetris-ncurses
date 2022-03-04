@@ -1,5 +1,6 @@
 #include "inputManager.h"
 #include "piece.h"
+#include "hud.h"
 using namespace std;
 
 
@@ -26,6 +27,7 @@ int main()
 	Piece pieceController = Piece();
 	pieceController.newPiece();
 	InputManager inputManager = InputManager(start_x, start_y - 1);
+	Hud hudManager;// = Hud(start_x + 1, start_y + 1,2,2);
 
 //DEBUG WINDOW
 //WINDOW *debugWin = newwin(6, GAME_WIDTH, start_y + GAME_HEIGHT, start_x);
