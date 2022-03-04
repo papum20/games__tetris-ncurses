@@ -28,11 +28,11 @@ float Square::getX() {
 
 void Square::rotateAroundOrigin() {
 	float tmpX = x;
-	x = y;
-	y = -tmpX;
+	x = -y;
+	y = tmpX;
 }
 void Square::unRotateAroundOrigin() {
 	float tmpX = x;
-	x = -y;
-	y = tmpX;
+	x = y;
+	y = -tmpX;
 }

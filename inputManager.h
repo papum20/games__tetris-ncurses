@@ -27,7 +27,7 @@ class InputManager {
 		int getX();
 		int getY();
 		bool rotateInput();
-		void setY(int y);
+		void setY();
 		//TIMER
 		//id < MAX_TIMERS
 		void timerInit(int id, float duration = 0);

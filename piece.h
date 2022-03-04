@@ -1,5 +1,4 @@
 #include <curses.h>
-#include <stdlib.h>
 #include "square.h"
 #include "game.h"
 

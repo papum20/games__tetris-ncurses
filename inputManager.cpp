@@ -5,7 +5,7 @@ InputManager::InputManager(int winX, int winY, int t) {
 	x = 0;
 	y = 0;
 	time = t;
-	inputWin = newwin(1, 20, winY, winX);
+	inputWin = newwin(1, 30, winY, winX);
 	init();
 }
 
@@ -24,9 +24,8 @@ int InputManager::getX() {
 int InputManager::getY() {
 	return y;
 }
-void InputManager::setY(int y) {
-	x = 0;
-	this->y = y;
+void InputManager::setY() {
+	y = 1;
 }
 bool InputManager::rotateInput() {
 	return rotate;
@@ -43,6 +42,8 @@ void InputManager::getInput() {
 	rotate = false;
 	//GET INPUT
 	int input = mvwgetch(inputWin, 0, 0);
+mvwprintw(inputWin, 0, 2, "%d %d %d %d,%d\t", KEY_LEFT, KEY_RIGHT, KEY_DOWN, KEY_UP, input);
+wrefresh(inputWin);
 	if(input == KEY_LEFT) x = -1;
 	else if(input == KEY_RIGHT) x = 1;
 	else if(input == KEY_DOWN) y = 1;

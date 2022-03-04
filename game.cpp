@@ -30,8 +30,9 @@ bool Game::checkCollision(piecePos piece) {
 	bool collides = false;
 	for(int i = 0; i < piece.n_squares; i++) {
 		int new_x = piece.xPiece[i], new_y = piece.yPiece[i];
-		if(new_x <= 0 || new_x >= width-1 || (new_y > 0 && full_squares[new_y][new_x])) collides = true;
-		else if(new_y >= height-1 || (new_y > 0 && full_squares[new_y][new_x])) collides = true;
+		if(new_x <= 0 || new_x >= width-1)					collides = true;
+		else if(new_y >= height-1) 							collides = true;
+		else if(new_y > 0 && full_squares[new_y][new_x])	collides = true;
 	}
 	return collides;
 }

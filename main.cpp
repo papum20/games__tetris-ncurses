@@ -28,10 +28,10 @@ int main()
 	InputManager inputManager = InputManager(start_x, start_y - 1);
 
 //DEBUG WINDOW
-//WINDOW *debugWin = newwin(6, GAME_WIDTH, start_y + GAME_HEIGHT, start_x);
-//keypad(debugWin, true);
-//box(debugWin, 0, 0);
-//wrefresh(debugWin);
+WINDOW *debugWin = newwin(6, GAME_WIDTH, start_y + GAME_HEIGHT, start_x);
+keypad(debugWin, true);
+box(debugWin, 0, 0);
+wrefresh(debugWin);
 
 	// INIT HUD
 
@@ -47,32 +47,31 @@ int main()
 			inputManager.getInput();
 		}
 		else {											// ELSE: FALL MOVEMENT
-			inputManager.setY(1);
+			inputManager.setY();
 			inputManager.timerInit(0, FALL_RATE);
 		}
 
 
 		int newX, newY;
 		gameScreen.drawPiece(pieceController.getSquares(), pieceController.getColor(), false);
-/*
+
 		//ROTATE
 		if(inputManager.rotateInput()) {
 			pieceController.rotate(gameScreen);
 		}
 		//MOVE
-		else {*/
-			if(gameScreen.checkCollision(pieceController.getSquares(inputManager.getX(), inputManager.getY()) )) {
-				newX = inputManager.getX();
-				newY = inputManager.getY();
-			} else {
-				newX = 0;
-				newY = 0;
-			}
-			pieceController.move(newX, newY);
-//		}
-
+		if(!gameScreen.checkCollision(pieceController.getSquares(inputManager.getX(), inputManager.getY()) )) {
+			newX = inputManager.getX();
+			newY = inputManager.getY();
+		} else {
+			newX = 0;
+			newY = 0;
+		}
+		pieceController.move(newX, newY);
+	
 		gameScreen.drawPiece(pieceController.getSquares(), pieceController.getColor(), true);
-		
+
+
 		//CHECK IF GOT TO END
 		if(inputManager.getY() != newY) {			//if blocked on y
 			gameScreen.addToGrid(pieceController.getSquares());
@@ -80,7 +79,6 @@ int main()
 		}
 
 	}
-
 
 	endwin();
 }
