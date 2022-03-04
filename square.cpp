@@ -2,7 +2,7 @@
 
 
 
-Square::Square(int x, int y) {
+Square::Square(float x, float y) {
 	this->x = x;
 	this->y = y;
 }
@@ -14,10 +14,25 @@ Square::Square() {
 }
 
 
+//// GET
 
-int Square::getY() {
+float Square::getY() {
 	return y;
 }
-int Square::getX() {
+float Square::getX() {
 	return x;
+}
+
+
+//// FUNCTIONS
+
+void Square::rotateAroundOrigin() {
+	float tmpX = x;
+	x = y;
+	y = -tmpX;
+}
+void Square::unRotateAroundOrigin() {
+	float tmpX = x;
+	x = -y;
+	y = tmpX;
 }

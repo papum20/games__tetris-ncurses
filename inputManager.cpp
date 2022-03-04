@@ -28,6 +28,9 @@ void InputManager::setY(int y) {
 	x = 0;
 	this->y = y;
 }
+bool InputManager::rotateInput() {
+	return rotate;
+}
 
 //// FUNCTIONS
 
@@ -37,11 +40,13 @@ void InputManager::getInput() {
 	//CLEAR INPUT
 	x = 0;
 	y = 0;
+	rotate = false;
 	//GET INPUT
 	int input = mvwgetch(inputWin, 0, 0);
 	if(input == KEY_LEFT) x = -1;
 	else if(input == KEY_RIGHT) x = 1;
 	else if(input == KEY_DOWN) y = 1;
+	else if(input == KEY_UP) rotate = true;
 }
 
 

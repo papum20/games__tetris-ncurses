@@ -26,12 +26,14 @@ void Piece::defineColors() {
 
 //// GET
 
-int Piece::getSquares(int ret_x[], int ret_y[]) {
+piecePos Piece::getSquares(int xOffset, int yOffset) {
+	piecePos tmp;
+	tmp.n_squares = n_squares;
 	for(int i = 0; i < n_squares; i++) {
-		ret_x[i] = squares[i].getX() + x;
-		ret_y[i] = squares[i].getY() + y;
+		tmp.xPiece[i] = squares[i].getX() + x + xOffset;
+		tmp.yPiece[i] = squares[i].getY() + y + yOffset;
 	}
-	return n_squares;
+	return tmp;
 }
 chtype Piece::getColor() {
 	return COLOR_PAIR(color);
@@ -53,5 +55,16 @@ void Piece::newPiece() {
 		squares[i] = Square(dflt_pieces[new_piece][i][0], dflt_pieces[new_piece][i][1]);
 	color = new_piece+1;
 	x = GAME_WIDTH / 2;
-	y = -MAX_SQUARES + 1;
+	y = -1.5;		//-MAX_SQUARES + 1;
+}
+
+
+void Piece::rotate(Game grid) {
+	for(int i = 0; i < n_squares; i++) squares[i].rotateAroundOrigin();
+	if(grid.checkCollision(getSquares()) ) {
+		if(!grid.checkCollision(getSquares(1, 0)) ) move(1, 0);
+		else if(!grid.checkCollision(getSquares(-1, 0)) ) move(-1, 0);
+		else
+			for(int i = 0; i < n_squares; i++) squares[i].unRotateAroundOrigin();
+	}
 }

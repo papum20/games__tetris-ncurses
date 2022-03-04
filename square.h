@@ -3,10 +3,14 @@
 
 class Square {
 	protected:
-		int x, y;
+		float x, y;
 	public:
-		Square(int x, int y);
+		Square(float x, float y);
 		Square();
-		int getY();
-		int getX();
+		float getX();
+		float getY();
+		void rotateAroundOrigin();
+		//geometrical transformation for 90 degrees rotation around center
+		void unRotateAroundOrigin();
+		//-90 degrees rotation
 };

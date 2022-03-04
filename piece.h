@@ -1,22 +1,23 @@
 #include <curses.h>
 #include <stdlib.h>
 #include "square.h"
+#include "game.h"
 
 
 #define GAME_WIDTH 20
 
-#define MAX_SQUARES 4
 #define DFLT_PIECES_N 7
 //dflt_pieces pieces, made each of max_squares squares, made of x,y
-const int dflt_pieces[DFLT_PIECES_N][MAX_SQUARES][2] = {
-	{{0,0}, {0,1}, {1,0}, {1,1}},	//square
-	{{1,0}, {1,1}, {0,2}, {1,2}},	//left L
-	{{0,0}, {0,1}, {0,2}, {1,2}},	//right L
-	{{0,0}, {1,0}, {2,0}, {1,1}},	//T
-	{{0,0}, {0,1}, {0,2}, {0,3}},	//I
-	{{1,0}, {0,1}, {1,1}, {0,2}},	//left S
-	{{0,0}, {0,1}, {1,1}, {1,2}},	//right S
+const float dflt_pieces[DFLT_PIECES_N][MAX_SQUARES][2] = {
+	{{.5,-.5}, {.5,.5}, {-.5,.5}, {-.5,-.5}},		//square
+	{{1,-1}, {-1,0}, {0,0}, {1,0}},					//left L
+	{{-1,-1}, {-1,0}, {0,0}, {1,0}},				//right L
+	{{0,-1}, {-1,0}, {0,0}, {1,0}},					//T
+	{{-1.5,-.5}, {-.5,-.5}, {.5,-.5}, {1.5,-.5}},	//I
+	{{.5,-.5}, {1.5,-.5}, {-.5,.5}, {.5,.5}},		//left S
+	{{-1.5,-.5}, {-.5,-.5}, {-.5,.5}, {.5,.5}}		//right S
 };
+
 
 
 //x AND y OF SQUARES START FROM UP-LEFT = 0,0
@@ -30,10 +31,10 @@ class Piece {
 		void defineColors();
 		//initializes colors for pieces
 	public:
-		int x, y;
+		float x, y;
 		Piece(int x, int y);
 		Piece();
-		int getSquares(int ret_x[], int ret_y[]);
+		piecePos getSquares(int xOffset = 0, int yOFfset = 0);
 		//modifies ret_x and ret_y with squares's x and y, returns n_sqares
 		chtype getColor();
 		//returns color as attribute
@@ -41,6 +42,6 @@ class Piece {
 		//changes x and y according to input
 		void newPiece();
 		//piece becomes a random piece
-		void rotate();
+		void rotate(Game grid);
 		//rotates by 90 degrees clockwise
 };

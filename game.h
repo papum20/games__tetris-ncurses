@@ -1,5 +1,5 @@
 #include <curses.h>
-#include "piece.h"
+#include "common.h"
 
 #define MAX_ARRAY 200
 
@@ -16,12 +16,12 @@ class Game {
 	public:
 		Game(int start_x, int start_y, int w, int h, int bgc);
 		WINDOW* getWindow();
-		void checkCollision(Piece piece, int move[], int x_input, int y_input);
-		//modifies move with x,y so it doesn't collide (only one between x,y has value != 0)
-		void drawPiece(Piece piece, bool drawing);
+		bool checkCollision(piecePos piece);
+		//
+		void drawPiece(piecePos piece, chtype color, bool drawing);
 		//if(drawing) draws piece, else erases it
 		//bool pieceToEnd(Piece piece);
 		////if piece at last line
-		void addToGrid(Piece piece);
+		void addToGrid(piecePos piece);
 		//adds piece to full_squares
 };
