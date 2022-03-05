@@ -24,6 +24,9 @@ WINDOW *Game::getWindow() {
 
 
 
+//// FUNCTIONS
+
+
 bool Game::checkCollision(piecePos piece) {
 	bool collides = false;
 	for(int i = 0; i < piece.n_squares; i++) {
@@ -61,7 +64,38 @@ void Game::drawPiece(piecePos piece, chtype color, bool drawing) {
 //}
 
 
+
+
+//// GRID
+
 void Game::addToGrid(piecePos piece) {
 	for(int i = 0; i < piece.n_squares; i++)
 		full_squares[piece.yPiece[i]][piece.xPiece[i]] = true;
+}
+
+int Game::checkLine(int line) {
+	bool full = true;
+	bool empty = true;
+	for(int i = 1; i < width - 1; i++) {
+		if(!full_squares[line][i]) full = false;
+		else empty = false;
+	}
+	if(full) return 1;
+	else if(empty) return -1;
+	else return 0;
+}
+
+void Game::moveLine() {
+	int check, move = 0, y = height - 1;
+	do {
+		check = checkLine(y);
+		if(check == 1) move++;
+		if(move > 0 && y < height - 1) {
+			for(int x = 1; x < width - 1; x++) {
+				full_squares[y][x] = false;
+				full_squares[y-1][x] = true;
+				
+			}
+		}
+	} while(y > 0 && (check != -1 || move != 0));
 }

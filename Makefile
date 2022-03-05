@@ -1,8 +1,11 @@
-tetris: main.o game.o hud.o inputManager.o piece.o square.o
-	g++ main.o game.o hud.o inputManager.o piece.o square.o -lncurses -o tetris
+tetris: main.o common.o game.o hud.o inputManager.o piece.o square.o
+	g++ main.o common.o game.o hud.o inputManager.o piece.o square.o -lncurses -o tetris
 
 main.o: main.cpp
 	g++ -c main.cpp
+
+common.o: common.cpp common.h
+	g++ -c common.cpp
 
 game.o: game.cpp game.h
 	g++ -c game.cpp

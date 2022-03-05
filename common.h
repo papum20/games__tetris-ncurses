@@ -3,6 +3,7 @@
 
 
 #include <stdlib.h>
+#include <curses.h>
 
 
 /// GAME
@@ -23,6 +24,11 @@ struct piecePos {
 #define NEXT_WIN_HEIGHT 4
 #define SCORE_WIN_WIDTH 6
 #define SCORE_WIN_HEIGHT 4
+
+
+//// ALL
+
+void fillWindow(WINDOW *win, chtype color);
 
 
 

@@ -7,7 +7,7 @@
 using namespace std;
 
 
-#define FALL_RATE 1.
+#define FALL_RATE .8
 #define REFRESH_RATE 1. / 30
 
 
@@ -48,6 +48,7 @@ int main()
 
 
 	// UPDATE
+	bool fastInput = false;
 	inputManager.timerInit(0, FALL_RATE);				// TIMER 0 = FALL TIME
 	while(gameIsOn)
 	{
@@ -55,6 +56,7 @@ int main()
 			inputManager.timerInit(1, REFRESH_RATE);	// TIMER 1 = INPUT TIME
 			while(!inputManager.timerCount(1));
 			inputManager.getInput();
+			if(inputManager.getY() == 1) fastInput = true;
 		}
 		else {											// ELSE: FALL MOVEMENT
 			inputManager.setY();
@@ -85,11 +87,19 @@ int main()
 		//CHECK IF GOT TO END
 		if(inputManager.getY() != newY) {			//if blocked on y
 			gameScreen.addToGrid(pieceController.getSquares());
+			gameScreen.moveLine();
+
 			hudManager.drawPiece(nextPiece.getNormalSquares(), nextPiece.getColor(), false);
 			pieceController = nextPiece;
 			nextPiece.newPiece();
 			hudManager.drawPiece(nextPiece.getNormalSquares(), nextPiece.getColor(), true);
 		}
+		else if(fastInput)
+			hudManager.updateFastScore();
+
+		//UPDATE HUD
+		hudManager.drawScore();
+		fastInput = false;
 
 	}
 

@@ -9,8 +9,34 @@ Hud::Hud(int xNextP, int yNextP, int xScore, int yScore) {
 	box(scoreWin, 0, 0);
 	wrefresh(nextPieceWin);
 	wrefresh(scoreWin);
+
+	score = 0;
+	lines = 0;
+
+	init_pair(10, COLOR_RED, COLOR_WHITE);
 }
 
+
+//// SCORE
+
+	void Hud::updateFastScore() {
+		score += FAST_SCORE;
+	}
+	void Hud::updateLineScore() {
+		lines++;
+		score += LINE_SCORE;
+	}
+	void Hud::drawScore() {
+		wattron(scoreWin, COLOR_PAIR(10));
+		fillWindow(scoreWin, COLOR_BLACK);
+		mvwprintw(scoreWin, 1, 1, "%d", lines);
+		mvwprintw(scoreWin, 2, 1, "%d", score);
+		wrefresh(scoreWin);
+		wattroff(scoreWin, COLOR_PAIR(10));
+	}
+
+
+//// FUNCTIONS
 
 void Hud::drawPiece(piecePos piece, chtype color, bool drawing) {
 	if(drawing) wattron(nextPieceWin, color);
