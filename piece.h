@@ -28,6 +28,7 @@ const float dflt_pieces[DFLT_PIECES_N][MAX_SQUARES][2] = {
 
 class Piece {
 	protected:
+		float x, y;
 		int n_squares;
 		Square squares[MAX_SQUARES];
 		int color;
@@ -35,7 +36,6 @@ class Piece {
 		void defineColors();
 		//initializes colors for pieces
 	public:
-		float x, y;
 		Piece(int x, int y);
 		Piece();
 		piecePos getSquares(int xOffset = 0, int yOFfset = 0);

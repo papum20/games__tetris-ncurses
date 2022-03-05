@@ -1,3 +1,4 @@
+#include <iostream>
 #include "inputManager.h"
 #include "piece.h"
 #include "hud.h"
@@ -19,23 +20,36 @@ int main()
 
 	initscr();
 
+	
 	// INIT GAME
-	int start_x = GAME_HEIGHT / 4;
-	int start_y = GAME_WIDTH / 4;
+	int start_x = min(getmaxx(stdscr) - GAME_WIDTH, getmaxx(stdscr) / 4);
+	int start_y = min(getmaxy(stdscr) - GAME_HEIGHT, getmaxy(stdscr) / 4);
+WINDOW *w = newwin(20,20,1,1);
+wprintw(w, "%d %d", start_x, start_y);
+wrefresh(w);
+wgetch(w);
 
 	Game gameScreen = Game(start_x, start_y, GAME_WIDTH, GAME_HEIGHT, 0);
+return 0;
+	InputManager inputManager = InputManager(start_x, start_y - 1);
+
 	Piece pieceController = Piece();
 	pieceController.newPiece();
-	InputManager inputManager = InputManager(start_x, start_y - 1);
-	Hud hudManager;// = Hud(start_x + 1, start_y + 1,2,2);
+	//Piece nextPiece = Piece();
+	//nextPiece.newPiece();
+	
+//WINDOW *w = newwin(1,1,1,1);
+
+//wgetch(w);
+//return 0;
+//	Hud hudManager = Hud(start_x, start_y);
+//	hudManager.drawPiece(nextPiece.getSquares(), nextPiece.getColor(), true);
 
 //DEBUG WINDOW
 //WINDOW *debugWin = newwin(6, GAME_WIDTH, start_y + GAME_HEIGHT, start_x);
 //keypad(debugWin, true);
 //box(debugWin, 0, 0);
 //wrefresh(debugWin);
-
-	// INIT HUD
 
 
 
@@ -75,10 +89,13 @@ int main()
 
 
 		//CHECK IF GOT TO END
-		if(inputManager.getY() != newY) {			//if blocked on y
+/*		if(inputManager.getY() != newY) {			//if blocked on y
 			gameScreen.addToGrid(pieceController.getSquares());
-			pieceController.newPiece();
-		}
+			hudManager.drawPiece(pieceController.getSquares(), pieceController.getColor(), false);
+			pieceController = nextPiece;
+			nextPiece.newPiece();
+			hudManager.drawPiece(nextPiece.getSquares(), nextPiece.getColor(), true);
+		}*/
 
 	}
 
