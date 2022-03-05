@@ -7,8 +7,6 @@ Game::Game(int start_x, int start_y, int w, int h, int bgc) {
 		for(int j = 0; j < w; j++) full_squares[i][j] = false;
 	createWindow(start_x, start_y);
 	bg_color = bgc;
-
-	start_color();
 }
 
 
@@ -41,10 +39,8 @@ bool Game::checkCollision(piecePos piece) {
 
 void Game::drawPiece(piecePos piece, chtype color, bool drawing) {
 	if(drawing) wattron(gameWin, color);
-
-	for(int i = 0; i < piece.n_squares; i++) {
+	for(int i = 0; i < piece.n_squares; i++)
 		if(piece.yPiece[i] > 0) mvwaddch(gameWin, piece.yPiece[i], piece.xPiece[i], ' ');
-	}
 	
 	wattroff(gameWin, color);
 	wrefresh(gameWin);

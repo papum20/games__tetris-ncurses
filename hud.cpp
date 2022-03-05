@@ -11,15 +11,10 @@ Hud::Hud(int xNextP, int yNextP, int xScore, int yScore) {
 	wrefresh(scoreWin);
 }
 
-Hud::Hud(int xNextP, int yNextP) {
-	Hud(xNextP, yNextP, xNextP, yNextP + NEXT_WIN_HEIGHT);
-}
-
-
 
 void Hud::drawPiece(piecePos piece, chtype color, bool drawing) {
 	if(drawing) wattron(nextPieceWin, color);
-	for(int i = 0; i < piece.n_squares; i++) 
+	for(int i = 0; i < piece.n_squares; i++)
 		mvwaddch(nextPieceWin, piece.yPiece[i] + 1, piece.xPiece[i] + 1, ' ');
 		// +1 for borders
 	wattroff(nextPieceWin, color);

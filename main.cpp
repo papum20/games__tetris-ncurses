@@ -7,51 +7,38 @@
 using namespace std;
 
 
-#define GAME_HEIGHT 20
 #define FALL_RATE 1.
 #define REFRESH_RATE 1. / 30
 
 
 int main()
 {
-	srand(time(NULL));
 
 	// CHECK IF FITS IN TERMINAL, COLORS...
 
 	bool gameIsOn = true;
 
 	initscr();
+	start_color();
+	srand(time(NULL));
 
-	
 	// INIT GAME
 //	int start_x = GAME_HEIGHT / 4;
 //	int start_y = GAME_WIDTH / 4;
 	int start_x = min(getmaxx(stdscr) - GAME_WIDTH, getmaxx(stdscr) / 4);
 	int start_y = min(getmaxy(stdscr) - GAME_HEIGHT, getmaxy(stdscr) / 4);
-WINDOW *w = newwin(4,10,1,1);
-wrefresh(w);
-//wgetch(w);
 
 	Game gameScreen = Game(start_x, start_y, GAME_WIDTH, GAME_HEIGHT, 0);
-//return 0;
 	InputManager inputManager = InputManager(start_x, start_y - 1);
 
 	Piece pieceController = Piece();
 	pieceController.newPiece();
 	Piece nextPiece = Piece();
 	nextPiece.newPiece();
+	Piece::defineColors();
 	
-//WINDOW *w = newwin(1,1,1,1);
-
-//wgetch(w);
-//return 0;
 	Hud hudManager = Hud(start_x - NEXT_WIN_WIDTH, start_y);
-piecePos p = nextPiece.getNormalSquares();
-wprintw(w, 0, 0, "%d", p.n_squares);
-for(int i = 0; i < p.n_squares; i++) wprintw(w, "%d %d,", p.xPiece[i], p.yPiece[i]);
-wrefresh(w);
-//	hudManager.drawPiece(nextPiece.getSquares(), nextPiece.getColor(), true);
-
+	hudManager.drawPiece(nextPiece.getNormalSquares(), nextPiece.getColor(), true);
 //DEBUG WINDOW
 //WINDOW *debugWin = newwin(6, GAME_WIDTH, start_y + GAME_HEIGHT, start_x);
 //keypad(debugWin, true);
@@ -96,13 +83,13 @@ wrefresh(w);
 
 
 		//CHECK IF GOT TO END
-/*		if(inputManager.getY() != newY) {			//if blocked on y
+		if(inputManager.getY() != newY) {			//if blocked on y
 			gameScreen.addToGrid(pieceController.getSquares());
-			hudManager.drawPiece(pieceController.getSquares(), pieceController.getColor(), false);
+			hudManager.drawPiece(nextPiece.getNormalSquares(), nextPiece.getColor(), false);
 			pieceController = nextPiece;
 			nextPiece.newPiece();
-			hudManager.drawPiece(nextPiece.getSquares(), nextPiece.getColor(), true);
-		}*/
+			hudManager.drawPiece(nextPiece.getNormalSquares(), nextPiece.getColor(), true);
+		}
 
 	}
 

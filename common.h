@@ -4,6 +4,11 @@
 
 #include <stdlib.h>
 
+
+/// GAME
+#define GAME_WIDTH 12		//10+2
+#define GAME_HEIGHT 20		//18+2
+
 //// PIECE
 #define MAX_SQUARES 4
 
@@ -12,7 +17,6 @@ struct piecePos {
 	int xPiece[MAX_SQUARES];
 	int yPiece[MAX_SQUARES];
 };
-
 
 //// HUD
 #define NEXT_WIN_WIDTH 6

@@ -6,14 +6,12 @@ Piece::Piece(int x, int y) {
 	this->y = y;
 	n_squares = 0;
 	color = 0;
-	defineColors();
 }
 Piece::Piece() {
 	x = 0;
 	y = 0;
 	n_squares = 0;
 	color = 0;
-	defineColors();
 }
 
 void Piece::defineColors() {
@@ -42,7 +40,7 @@ piecePos Piece::getSquares(int xOffset, int yOffset) {
 	}
 	return tmp;
 }
-piecePos Piece::getNormalSquares(int xOffset = 0, int yOffset = 0) {
+piecePos Piece::getNormalSquares(int xOffset, int yOffset) {
 	piecePos tmp = getSquares(xOffset, yOffset);
 	//get min x,y to use as translation vector so it's drawn in top-left corner
 	int xT = tmp.xPiece[0], yT = tmp.yPiece[0];
@@ -73,7 +71,7 @@ void Piece::newPiece() {
 	n_squares = MAX_SQUARES;
 	for(int i = 0; i < n_squares; i++)
 		squares[i] = Square(dflt_pieces[new_piece][i][0], dflt_pieces[new_piece][i][1]);
-	color = new_piece+1;
+	color = new_piece + 1;
 	x = GAME_WIDTH / 2;
 	y = -2;		//-MAX_SQUARES + 1;
 }
