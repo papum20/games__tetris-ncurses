@@ -1,7 +1,9 @@
 #include <iostream>
+#include <ctime>
 #include "inputManager.h"
 #include "piece.h"
 #include "hud.h"
+#include "common.h"
 using namespace std;
 
 
@@ -22,27 +24,32 @@ int main()
 
 	
 	// INIT GAME
+//	int start_x = GAME_HEIGHT / 4;
+//	int start_y = GAME_WIDTH / 4;
 	int start_x = min(getmaxx(stdscr) - GAME_WIDTH, getmaxx(stdscr) / 4);
 	int start_y = min(getmaxy(stdscr) - GAME_HEIGHT, getmaxy(stdscr) / 4);
-WINDOW *w = newwin(20,20,1,1);
-wprintw(w, "%d %d", start_x, start_y);
+WINDOW *w = newwin(4,10,1,1);
 wrefresh(w);
-wgetch(w);
+//wgetch(w);
 
 	Game gameScreen = Game(start_x, start_y, GAME_WIDTH, GAME_HEIGHT, 0);
-return 0;
+//return 0;
 	InputManager inputManager = InputManager(start_x, start_y - 1);
 
 	Piece pieceController = Piece();
 	pieceController.newPiece();
-	//Piece nextPiece = Piece();
-	//nextPiece.newPiece();
+	Piece nextPiece = Piece();
+	nextPiece.newPiece();
 	
 //WINDOW *w = newwin(1,1,1,1);
 
 //wgetch(w);
 //return 0;
-//	Hud hudManager = Hud(start_x, start_y);
+	Hud hudManager = Hud(start_x - NEXT_WIN_WIDTH, start_y);
+piecePos p = nextPiece.getNormalSquares();
+wprintw(w, 0, 0, "%d", p.n_squares);
+for(int i = 0; i < p.n_squares; i++) wprintw(w, "%d %d,", p.xPiece[i], p.yPiece[i]);
+wrefresh(w);
 //	hudManager.drawPiece(nextPiece.getSquares(), nextPiece.getColor(), true);
 
 //DEBUG WINDOW

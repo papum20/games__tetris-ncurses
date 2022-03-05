@@ -29,6 +29,10 @@ void Piece::defineColors() {
 
 //// GET
 
+chtype Piece::getColor() {
+	return COLOR_PAIR(color);
+}
+
 piecePos Piece::getSquares(int xOffset, int yOffset) {
 	piecePos tmp;
 	tmp.n_squares = n_squares;
@@ -38,8 +42,21 @@ piecePos Piece::getSquares(int xOffset, int yOffset) {
 	}
 	return tmp;
 }
-chtype Piece::getColor() {
-	return COLOR_PAIR(color);
+piecePos Piece::getNormalSquares(int xOffset = 0, int yOffset = 0) {
+	piecePos tmp = getSquares(xOffset, yOffset);
+	//get min x,y to use as translation vector so it's drawn in top-left corner
+	int xT = tmp.xPiece[0], yT = tmp.yPiece[0];
+	for(int i = 1; i < MAX_SQUARES; i++) {
+		if(tmp.xPiece[i] < xT) xT = tmp.xPiece[i];
+		if(tmp.yPiece[i] < yT) yT = tmp.yPiece[i];
+	}
+	//translate
+	for(int i = 0; i < tmp.n_squares; i++) {
+		tmp.yPiece[i] -= yT;
+		tmp.xPiece[i] -= xT;
+	}
+
+	return tmp;
 }
 
 

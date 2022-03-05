@@ -4,10 +4,6 @@
 #include <curses.h>
 #include "common.h"
 
-#define NEXT_WIN_WIDTH 6
-#define NEXT_WIN_HEIGHT 4
-#define SCORE_WIN_WIDTH 6
-#define SCORE_WIN_HEIGHT 4
 
 
 class Hud {

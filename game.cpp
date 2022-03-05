@@ -15,7 +15,7 @@ Game::Game(int start_x, int start_y, int w, int h, int bgc) {
 void Game::createWindow(int start_x, int start_y) {
 	int x, y;
 	getmaxyx(stdscr, y, x);
-	gameWin = newwin(height, width, start_x, start_y);
+	gameWin = newwin(height, width, start_y, start_x);
 	box(gameWin, 0, 0);
 	wrefresh(gameWin);
 }

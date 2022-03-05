@@ -40,6 +40,8 @@ class Piece {
 		Piece();
 		piecePos getSquares(int xOffset = 0, int yOFfset = 0);
 		//modifies ret_x and ret_y with squares's x and y, returns n_sqares
+		piecePos getNormalSquares(int xOffset = 0, int yOffset = 0);
+		//getSquares but coordinates are minimum and positive
 		chtype getColor();
 		//returns color as attribute
 		void move(int x_move, int y_move);
