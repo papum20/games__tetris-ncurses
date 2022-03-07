@@ -16,7 +16,7 @@ class Game {
 		// LEVEL
 		int width, height;
 		WINDOW *gameWin;
-WINDOW *debugWin;
+		WINDOW *debugWin;
 		short full_squares[MAX_ARRAY][MAX_ARRAY];	//y, x
 		int bg_color;	//background_color
 		
@@ -25,17 +25,19 @@ WINDOW *debugWin;
 		//returns -1 if empty line, 1 if full line, else 0
 	public:
 		Game(int start_x, int start_y, int w, int h, int bgc);
-		WINDOW* getWindow();
+		void clearWindow();
+		//clears game window
 		bool checkCollision(piecePos piece);
 		//
+		bool checkGameOver(piecePos piece);
+		//check game over
 		void drawPiece(piecePos piece, bool drawing);
 		//if(drawing) draws piece, else erases it
 		void addToGrid(piecePos piece);
 		//adds piece to full_squares
 		int moveLine();
 		//checks completed lines and moves down; returs number of completed lines
-
-
+		
 		void debug();
 };
 

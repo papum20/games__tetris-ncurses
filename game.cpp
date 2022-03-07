@@ -19,10 +19,15 @@ void Game::createWindow(int start_x, int start_y) {
 debugWin = newwin(height, width, start_y, start_x + width);
 }
 
-WINDOW *Game::getWindow() {
-	return gameWin;
+void Game::clearWindow() {
+	//clear window
+	wclear(gameWin);
+	box(gameWin, 0, 0);
+	wrefresh(gameWin);
+	//clear grid
+	for(int i = 0; i < height; i++)
+		for(int j = 0; j < width; j++) full_squares[i][j] = EMPTY_SQUARE;
 }
-
 
 
 //// FUNCTIONS
@@ -37,6 +42,13 @@ bool Game::checkCollision(piecePos piece) {
 		else if(new_y > 0 && full_squares[new_y][new_x] != EMPTY_SQUARE)	collides = true;
 	}
 	return collides;
+}
+
+bool Game::checkGameOver(piecePos piece) {
+	bool gameOver = false;
+	for(int i = 0; i < piece.n_squares; i++)
+		if(piece.yPiece[i] <= 0) gameOver = true;
+	return gameOver;
 }
 
 
@@ -101,7 +113,7 @@ int Game::moveLine() {
 void Game::debug() {
 for(int y = 0; y < height; y++) {
 	for(int x = 0; x < width; x++) {
-		mvwprintw(debugWin, y, x, "%d", full_squares[y][x] == EMPTY_SQUARE);
+		mvwprintw(debugWin, y, x, "%d", full_squares[y][x] != EMPTY_SQUARE);
 	}
 }
 wrefresh(debugWin);

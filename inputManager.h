@@ -15,7 +15,7 @@
 class InputManager {
 	protected:
 		int x, y;
-		bool rotate;
+		bool rotate, restart;
 		int time;	//milliseconds
 		WINDOW *inputWin;
 		//TIMER
@@ -31,6 +31,7 @@ class InputManager {
 		int getX();
 		int getY();
 		bool rotateInput();
+		bool restartInput();
 		void setY();
 		//TIMER
 		//id < MAX_TIMERS
