@@ -38,7 +38,8 @@ Hud::Hud(int xNextP, int yNextP, int xScore, int yScore) {
 
 //// FUNCTIONS
 
-void Hud::drawPiece(piecePos piece, chtype color, bool drawing) {
+void Hud::drawPiece(piecePos piece, bool drawing) {
+	chtype color = COLOR_PAIR(piece.color);
 	if(drawing) wattron(nextPieceWin, color);
 	for(int i = 0; i < piece.n_squares; i++)
 		mvwaddch(nextPieceWin, piece.yPiece[i] + 1, piece.xPiece[i] + 1, ' ');

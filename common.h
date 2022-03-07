@@ -17,6 +17,7 @@ struct piecePos {
 	int n_squares;
 	int xPiece[MAX_SQUARES];
 	int yPiece[MAX_SQUARES];
+	chtype color;
 };
 
 //// HUD

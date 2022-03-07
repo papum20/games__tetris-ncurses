@@ -38,7 +38,7 @@ int main()
 	Piece::defineColors();
 	
 	Hud hudManager = Hud(start_x - NEXT_WIN_WIDTH, start_y);
-	hudManager.drawPiece(nextPiece.getNormalSquares(), nextPiece.getColor(), true);
+	hudManager.drawPiece(nextPiece.getNormalSquares(), true);
 //DEBUG WINDOW
 //WINDOW *debugWin = newwin(6, GAME_WIDTH, start_y + GAME_HEIGHT, start_x);
 //keypad(debugWin, true);
@@ -65,7 +65,7 @@ int main()
 
 
 		int newX, newY;
-		gameScreen.drawPiece(pieceController.getSquares(), pieceController.getColor(), false);
+		gameScreen.drawPiece(pieceController.getSquares(), false);
 
 		//ROTATE
 		if(inputManager.rotateInput()) {
@@ -81,7 +81,7 @@ int main()
 		}
 		pieceController.move(newX, newY);
 	
-		gameScreen.drawPiece(pieceController.getSquares(), pieceController.getColor(), true);
+		gameScreen.drawPiece(pieceController.getSquares(), true);
 
 
 		//CHECK IF GOT TO END
@@ -89,10 +89,10 @@ int main()
 			gameScreen.addToGrid(pieceController.getSquares());
 			gameScreen.moveLine();
 
-			hudManager.drawPiece(nextPiece.getNormalSquares(), nextPiece.getColor(), false);
+			hudManager.drawPiece(nextPiece.getNormalSquares(), false);
 			pieceController = nextPiece;
 			nextPiece.newPiece();
-			hudManager.drawPiece(nextPiece.getNormalSquares(), nextPiece.getColor(), true);
+			hudManager.drawPiece(nextPiece.getNormalSquares(), true);
 		}
 		else if(fastInput)
 			hudManager.updateFastScore();
@@ -100,7 +100,7 @@ int main()
 		//UPDATE HUD
 		hudManager.drawScore();
 		fastInput = false;
-
+gameScreen.debug();
 	}
 
 	endwin();

@@ -1,2 +1,5 @@
 gameover
 score
+default value x chtype color
+
+fai le prove con chgat vedi se funziona se no devi usare wattron

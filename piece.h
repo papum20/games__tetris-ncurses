@@ -43,6 +43,8 @@ class Piece {
 		//getSquares but coordinates are minimum and positive
 		chtype getColor();
 		//returns color as attribute
+		short getColorPair();
+		//returns color pair id
 		void move(int x_move, int y_move);
 		//changes x and y according to input
 		void newPiece();

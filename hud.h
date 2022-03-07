@@ -24,7 +24,7 @@ class Hud {
 		void updateLineScore();
 		void drawScore();
 		//FUNCTIONS
-		void drawPiece(piecePos piece, chtype color, bool drawing);
+		void drawPiece(piecePos piece, bool drawing);
 		//if(drawing) draws piece, else erases it
 };
 

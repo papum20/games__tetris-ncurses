@@ -31,6 +31,10 @@ chtype Piece::getColor() {
 	return COLOR_PAIR(color);
 }
 
+short Piece::getColorPair() {
+	return color;
+}
+
 piecePos Piece::getSquares(int xOffset, int yOffset) {
 	piecePos tmp;
 	tmp.n_squares = n_squares;
@@ -38,6 +42,7 @@ piecePos Piece::getSquares(int xOffset, int yOffset) {
 		tmp.xPiece[i] = squares[i].getX() + x + xOffset;
 		tmp.yPiece[i] = squares[i].getY() + y + yOffset;
 	}
+	tmp.color = getColorPair();
 	return tmp;
 }
 piecePos Piece::getNormalSquares(int xOffset, int yOffset) {
@@ -73,7 +78,7 @@ void Piece::newPiece() {
 		squares[i] = Square(dflt_pieces[new_piece][i][0], dflt_pieces[new_piece][i][1]);
 	color = new_piece + 1;
 	x = GAME_WIDTH / 2;
-	y = -2;		//-MAX_SQUARES + 1;
+	y = -1;		//-MAX_SQUARES + 1;
 }
 
 
