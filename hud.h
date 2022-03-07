@@ -21,7 +21,7 @@ class Hud {
 		Hud(int xNextP, int yNextP) : Hud(xNextP, yNextP, xNextP, yNextP + NEXT_WIN_HEIGHT) {};
 		//SCORE
 		void updateFastScore();
-		void updateLineScore();
+		void updateLineScore(int n);
 		void drawScore();
 		//FUNCTIONS
 		void drawPiece(piecePos piece, bool drawing);

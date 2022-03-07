@@ -72,7 +72,7 @@ int Game::checkLine(int line) {
 	else return 0;
 }
 
-void Game::moveLine() {
+int Game::moveLine() {
 	int check, move = 0, y = height - 2;
 //InputManager im(10,1);
 	do {
@@ -80,7 +80,6 @@ void Game::moveLine() {
 		if(check == 1) {					//if full line
 			move++;
 			mvwchgat(gameWin, y, 1, width - 2, A_NORMAL, EMPTY_SQUARE, NULL);			//erase line
-
 		}
 		else if(check == 0 && move > 0) {	//if line not full nor empty
 			mvwchgat(gameWin, y, 1, width - 2, A_NORMAL, EMPTY_SQUARE, NULL);			//erase line
@@ -93,6 +92,7 @@ void Game::moveLine() {
 		y--;
 	} while(y > 0 && check != -1);
 	wrefresh(gameWin);
+	return move;
 }
 
 

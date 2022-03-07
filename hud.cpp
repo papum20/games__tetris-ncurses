@@ -22,9 +22,9 @@ Hud::Hud(int xNextP, int yNextP, int xScore, int yScore) {
 	void Hud::updateFastScore() {
 		score += FAST_SCORE;
 	}
-	void Hud::updateLineScore() {
-		lines++;
-		score += LINE_SCORE;
+	void Hud::updateLineScore(int n) {
+		lines += n;
+		score += n * LINE_SCORE;
 	}
 	void Hud::drawScore() {
 		wattron(scoreWin, COLOR_PAIR(10));

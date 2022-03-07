@@ -5,6 +5,7 @@
 #include <curses.h>
 #include "common.h"
 #include "inputManager.h"
+#include "hud.h"
 
 #define MAX_ARRAY 200
 #define EMPTY_SQUARE 0
@@ -31,8 +32,8 @@ WINDOW *debugWin;
 		//if(drawing) draws piece, else erases it
 		void addToGrid(piecePos piece);
 		//adds piece to full_squares
-		void moveLine();
-		//moves line 1 down
+		int moveLine();
+		//checks completed lines and moves down; returs number of completed lines
 
 
 		void debug();

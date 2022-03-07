@@ -87,7 +87,8 @@ int main()
 		//CHECK IF GOT TO END
 		if(inputManager.getY() != newY) {			//if blocked on y
 			gameScreen.addToGrid(pieceController.getSquares());
-			gameScreen.moveLine();
+			int lineScore = gameScreen.moveLine();
+			hudManager.updateLineScore(lineScore);
 
 			hudManager.drawPiece(nextPiece.getNormalSquares(), false);
 			pieceController = nextPiece;
